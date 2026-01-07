@@ -1,4 +1,6 @@
+import time
 
+start = time.perf_counter()
 l1 = [9, 9, 9, 9, 9, 9, 9]
 l2 = [9, 9, 9, 9]
 
@@ -12,4 +14,5 @@ res_no = str(int(num1_st) + int(num2_st))
 
 out = []
 for i in res_no[::-1]: out.append(int(i))
-print(out)
+end = time.perf_counter()
+print(out, "\n", (end-start))
