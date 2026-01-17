@@ -2,7 +2,7 @@
 
 stringL = "pwwkew"
 
-def longestSubString(string_test:str):
+def longestSubString(string_test:str) -> int:
 	char_map = {}
 	max_length = 0
 	start = 0
