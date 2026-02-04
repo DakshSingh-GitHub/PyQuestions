@@ -1,9 +1,9 @@
-# We have to find the second largest element without sorting
+# We have to find the second-largest element without sorting
 
 # arr = [1, 2, 4, 5, 9, 6, 0]
 
 # largest = 0
-# secont_largest = 0
+# second_largest = 0
 
 # for i in range(len(arr)):
 #     if arr[i] > largest:
