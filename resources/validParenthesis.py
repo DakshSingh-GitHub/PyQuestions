@@ -1,45 +1,39 @@
-# Stack method
+class Solution:
+    def isValid(self, s: str) -> bool:
+        """
+        :type s: str
+        :rtype: bool
+        """
+        stack = []
+        mapping = {")": "(", "}": "{", "]": "["}
 
-# from classes.Stack import Stack
-# def isValid(s: str) -> bool:
-#     stack = Stack()
-#     mapping = {")": "(", "}": "{", "]": "["}
-#     for char in s:
-#         if char in mapping.values():
-#             stack.push(char)
-#         elif char in mapping.keys():
-#             if stack.isEmpty() or mapping[char] != stack.peek():
-#                 return False
-#             stack.pop()
-#         else:
-#             continue
-#     return stack.isEmpty()
-#
-# if __name__ == "__main__":
-#     string = "print('Hello, World'))"
-#     if isValid(string):
-#         print("Balanced")
-#     else:
-#         print("Unbalanced")
+        for char in s:
+            if char in mapping:
+                # Pop the top element if the stack is not empty, else assign a dummy value
+                top_element = stack.pop() if stack else '#'
 
+                # The mapping for the opening bracket in our hash and the top element of the stack don't match, return False
+                if mapping[char] != top_element:
+                    return False
+            else:
+                # We have an opening bracket, simply push it onto the stack.
+                stack.append(char)
 
-# Balance factor method
-string = "()"
+        # In the end, if the stack is empty, then we have a valid expression.
+        return not stack
 
-balance_factor = 0
-balanced = True
-
-for i in range(len(string)):
-	if string[i] == "(":
-		balance_factor += 1
-	elif string[i] == ")":
-		balance_factor -= 1
-		if balance_factor < 0:
-			balanced = False
-			break
-
-if balanced and balance_factor == 0:
-	print("Balanced")
-else:
-	print("Unbalanced")
-
+if __name__ == "__main__":
+    solution = Solution()
+    
+    # Test cases
+    test_cases = [
+        "()",
+        "()[]{}",
+        "(]",
+        "([)]",
+        "{[]}",
+        "print('Hello, World'))" # From previous context, though strictly LeetCode usually only has brackets
+    ]
+    
+    for s in test_cases:
+        print(f"Input: {s}, Valid: {solution.isValid(s)}")
